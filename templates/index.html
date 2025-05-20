@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translator App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>English to Hindi Translator</h1>
+
+    <textarea id="inputText" rows="4" cols="50" placeholder="Enter text in English..."></textarea><br>
+    <button onclick="translateText()">Translate</button>
+
+    <h2>Translated Output:</h2>
+    <p id="translatedText">--</p>
+    <button onclick="speak()">🔊 Speak</button>
+
+    <script>
+        function translateText() {
+            const text = document.getElementById("inputText").value;
+
+            fetch("/translate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.translated_text) {
+                    document.getElementById("translatedText").innerText = data.translated_text;
+                } else {
+                    alert("Translation failed: " + (data.error || "Unknown error"));
+                }
+            });
+        }
+
+        function speak() {
+            const text = document.getElementById("translatedText").innerText;
+            if (!text) return;
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = "hi-IN"; // Use correct language code
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
+<script>
+function speak() {
+    const text = document.getElementById("translatedText").innerText;
+    if (!text) {
+        alert("Nothing to speak!");
+        return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "hi-IN"; // Set this to the correct language code (e.g., hi-IN for Hindi)
+    speechSynthesis.speak(utterance);
+}
+</script>
+
+<audio id="player" controls>
+    <source id="audioSource" src="" type="audio/mpeg">
+</audio>
+
+<script>
+function playAudio(url) {
+    document.getElementById('audioSource').src = url;
+    document.getElementById('player').load();
+    document.getElementById('player').play();
+}
+</script>
+
+

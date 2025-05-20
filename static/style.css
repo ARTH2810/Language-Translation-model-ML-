@@ -1,0 +1,59 @@
+/* style.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+    color: #333;
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    color: #00796b;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #00796b;
+    border-radius: 8px;
+    resize: none;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+button {
+    background-color: #00796b;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+#translatedText {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #444;
+    padding: 10px;
+    background: #e0f2f1;
+    border: 1px solid #b2dfdb;
+    border-radius: 6px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+audio {
+    margin-top: 20px;
+}
